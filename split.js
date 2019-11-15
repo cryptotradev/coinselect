@@ -19,7 +19,7 @@ module.exports = function split (utxos, outputs, feeRate) {
     return a + !x.value
   }, 0)
 
-  if (ext.isZero(remaining) && unspecified === 0) return utils.finalize(utxos, outputs, feeRate)
+  if (ext.isZero(remaining) && ext.isZero(unspecified)) return utils.finalize(utxos, outputs, feeRate)
 
   // Counts the number of split outputs left
   var splitOutputsCount = new BN(outputs.reduce(function (a, x) {

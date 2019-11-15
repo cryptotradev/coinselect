@@ -261,4 +261,31 @@ module.exports = [{
   outputs: [{}],
   expected: {}
 }
+,
+{
+  description: '1 to 1',
+  feeRate: new BN(20),
+  inputs: [
+    new BN(7737681708)
+  ],
+  outputs: [
+    {
+      address: 'derek'
+    }
+  ],
+  expected: {
+    inputs: [
+      {
+        value: new BN(7737681708)
+      }
+    ],
+    outputs: [
+      {
+        address: 'derek',
+        value: new BN(7737677868)
+      }
+    ],
+    fee: new BN(3840)
+  }
+}
 ]
