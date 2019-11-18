@@ -1,9 +1,9 @@
-var BN = require('bn.js')
+var BN = require('bignumber.js')
 
 function expand (values, indices) {
   if (indices) {
     return values.map(function (x, i) {
-      if (BN.isBN(x)) { return { i: i, value: x } }
+      if (BN.isBigNumber(x)) { return { i: i, value: x } }
       var y = { i: i }
       for (var k in x) y[k] = x[k]
       return y
@@ -11,7 +11,7 @@ function expand (values, indices) {
   }
 
   return values.map(function (x, i) {
-    return (typeof x === 'object' && !BN.isBN(x)) ? x : { value: x }
+    return (typeof x === 'object' && !BN.isBigNumber(x)) ? x : { value: x }
   })
 }
 

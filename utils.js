@@ -1,4 +1,4 @@
-var BN = require('bn.js')
+var BN = require('bignumber.js')
 var ext = require('./bn-extensions')
 
 // baseline estimates, used to improve performance
@@ -26,28 +26,29 @@ function outputBytes (output) {
 
 function dustThreshold (output, feeRate) {
   /* ... classify the output for input estimate  */
-  return ext.mul(inputBytes({}), feeRate)
+  return new BN(inputBytes({})).times(feeRate)
 }
 
 function transactionBytes (inputs, outputs) {
   return TX_BASE_SIZE
-    .add(inputs.reduce(function (a, x) {
+    .plus(inputs.reduce(function (a, x) {
       return ext.add(a, inputBytes(x))
     }, ext.BN_ZERO))
-    .add(outputs.reduce(function (a, x) {
+    .plus(outputs.reduce(function (a, x) {
       return ext.add(a, outputBytes(x))
     }, ext.BN_ZERO))
 }
 
 function uintOrNull (v) {
-  if (!BN.isBN(v)) return null
-  if (v.isNeg()) return null
+  if (!BN.isBigNumber(v)) return null
+  if (v.isNegative()) return null
+  if (!v.isInteger()) return null
   return v
 }
 
 function sumForgiving (range) {
   return range.reduce(function (a, x) {
-    var valueOrZero = BN.isBN(x.value) ? x.value : ext.BN_ZERO
+    var valueOrZero = BN.isBigNumber(x.value) ? x.value : ext.BN_ZERO
     return ext.add(a, valueOrZero)
   },
   ext.BN_ZERO)

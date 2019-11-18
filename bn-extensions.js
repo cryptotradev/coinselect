@@ -1,4 +1,4 @@
-var BN = require('bn.js')
+var BN = require('bignumber.js')
 var slice = Array.prototype.slice
 
 var BN_ZERO = new BN(0)
@@ -10,8 +10,8 @@ function add () {
 }
 
 function _add (a, b) {
-  if (!BN.isBN(a) || !BN.isBN(b)) return null
-  return a.add(b)
+  if (!BN.isBigNumber(a) || !BN.isBigNumber(b)) return null
+  return a.plus(b)
 }
 
 function sub () {
@@ -20,8 +20,8 @@ function sub () {
 }
 
 function _sub (a, b) {
-  if (!BN.isBN(a) || !BN.isBN(b)) return null
-  return a.sub(b)
+  if (!BN.isBigNumber(a) || !BN.isBigNumber(b)) return null
+  return a.minus(b)
 }
 
 function mul () {
@@ -30,8 +30,8 @@ function mul () {
 }
 
 function _mul (a, b) {
-  if (!BN.isBN(a) || !BN.isBN(b)) return null
-  return a.mul(b)
+  if (!BN.isBigNumber(a) || !BN.isBigNumber(b)) return null
+  return a.times(b)
 }
 
 function div () {
@@ -40,28 +40,28 @@ function div () {
 }
 
 function _div (a, b) {
-  if (!BN.isBN(a) || !BN.isBN(b)) return null
+  if (!BN.isBigNumber(a) || !BN.isBigNumber(b)) return null
   if (b.isZero()) return null
   return a.div(b)
 }
 
 function isZero (v) {
-  if (!BN.isBN(v)) return false
+  if (!BN.isBigNumber(v)) return false
   return v.isZero()
 }
 
 function eq (a, b) {
-  if (!BN.isBN(a) || !BN.isBN(b)) return false
+  if (!BN.isBigNumber(a) || !BN.isBigNumber(b)) return false
   return a.eq(b)
 }
 
 function lt (a, b) {
-  if (!BN.isBN(a) || !BN.isBN(b)) return false
+  if (!BN.isBigNumber(a) || !BN.isBigNumber(b)) return false
   return a.lt(b)
 }
 
 function gt (a, b) {
-  if (!BN.isBN(a) || !BN.isBN(b)) return false
+  if (!BN.isBigNumber(a) || !BN.isBigNumber(b)) return false
   return a.gt(b)
 }
 

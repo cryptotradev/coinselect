@@ -1,4 +1,4 @@
-var BN = require('bn.js')
+var BN = require('bignumber.js')
 
 module.exports = [{
   description: '1 output, no change',
